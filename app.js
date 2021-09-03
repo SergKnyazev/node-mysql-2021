@@ -1,65 +1,50 @@
-// const Sequelize = require('sequelize');
 const express = require('express');
-
+require('dotenv').config();
 const { database } = require('./database/database.js');
-
 const { usersRouter } = require('./routers/users.router.js');
+
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 
 app.use(usersRouter);
 
-// "host": "remotemysql.com",
-// "user": "09OhAjwTap",
-// "password": "8IxnrlpJPw",
-// "database": "09OhAjwTap",
-
-// определяем объект Sequelize
-// const sequelize = new Sequelize('09OhAjwTap', '09OhAjwTap', '8IxnrlpJPw', {
-//   dialect: 'mysql',
-//   host: 'remotemysql.com',
-//   define: {
-//     timestamps: false,
-//   },
-// });
-
-
-
-//TODO ::: users.router ругается на отсутствие сущности User
-//TODO ::: вынести User в отдельный файл и импортировать его по необходимости
-
-
-
-// определяем модель User
-// const User = sequelize.define('user', {
-//   id: {
-//     type: Sequelize.INTEGER,
-//     autoIncrement: true,
-//     primaryKey: true,
-//     allowNull: false,
-//   },
-//   name: {
-//     type: Sequelize.STRING,
-//     allowNull: false,
-//   },
-//   age: {
-//     type: Sequelize.INTEGER,
-//     allowNull: false,
-//   },
-// });
-
 app.set('view engine', 'hbs');
 
-// синхронизация с бд, после успшной синхронизации запускаем сервер
-database
-  .sync()
-  .then(() => {
-    console.log('+++ Database MySQL is connected...');
-    app.listen(3000, function () {
-      console.log('+++ Server started on PORT=3000...');
+(async function startApp() {
+  try {
+      app.listen(PORT, () => {
+      console.log(`+++ Server has been started on port ${PORT}...`)
     });
-  })
-  .catch((err) => console.log(err));
+
+    await database.authenticate();
+    console.log('+++ Database MySQL is connected...');
+
+    // синхронизация с моделями БД
+    database
+      .sync()
+      .then(() => {
+        console.log('+++ Models of database has been synchronized ...');
+      })
+      .catch((err) => console.log(`---ERROR : ${err}`));
+  } catch (err) {
+    console.log(`---ERROR : function startAPP with err=${err}`)
+  }
+})()
+
+// console.log(database)
+
+
+
+
+
+
+
+
+
+
+
+
 
 // //получение данных
 // app.get('/', function (req, res) {

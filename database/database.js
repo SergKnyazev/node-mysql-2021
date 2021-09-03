@@ -1,8 +1,7 @@
 const Sequelize = require('sequelize');
+require('dotenv').config();
 
-//TODO ::: sequelize --> database
-
-const database = new Sequelize('09OhAjwTap', '09OhAjwTap', '8IxnrlpJPw', {
+const database = new Sequelize(process.env.DATABASE, process.env.USER_NAME, process.env.PASSWORD, {
   dialect: 'mysql',
   host: 'remotemysql.com',
   define: {

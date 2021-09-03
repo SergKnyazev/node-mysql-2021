@@ -21,10 +21,6 @@ usersRouter.post('/edit', urlencodedParser, usersController.setEditedUser);
 
 
 
-
-
-
-
 //**************************************
 // app.route('/book')
 //   .get(function(req, res) {
