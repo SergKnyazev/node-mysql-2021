@@ -5,11 +5,13 @@ const bodyParser = require('body-parser');
 const usersRouter = Router();
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
+//получение данных
 usersRouter.route('/')
-  .get(usersController.getAllUsers); //получение данных
-
+  .get(usersController.getAllUsers);
 // рендер формы добавления данных
-usersRouter.get('/create', usersController.renderCreatePage);
+usersRouter.route('/create')
+  .get(usersController.renderCreatePage);
+
 // добавление данных
 usersRouter.post('/create', urlencodedParser, usersController.createUser);
 // удаление данных по id

@@ -13,7 +13,8 @@ class UsersService {
   async getAllUsers() {
     console.log('service -- getAllUsers -- 1');
     const users =  await database.query(
-      "SELECT * FROM `users`",
+      `SELECT * FROM users`,
+      // "SELECT * FROM `users`",
       { type: database.QueryTypes.SELECT}
     );
     console.log('service -- getAllUsers -- 2 : users ------------------------');
