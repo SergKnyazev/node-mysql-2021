@@ -48,7 +48,7 @@ class UsersController {
     }
   }
 
-  //удаление данных
+  //удаление данных ***************************************************
   async removeUser (req, res) {
     try {
       await usersService.removeUser(req.params.id);
@@ -61,7 +61,7 @@ class UsersController {
     }
   }
 
-// получаем пользователя по id для редактирования
+// получаем пользователя по id для редактирования ***************************************************
   async editUser (req, res) {
     try {
       const user = await usersService.editUser(req.params.id);

@@ -11,7 +11,7 @@ app.use(usersRouter);
 
 app.set('view engine', 'hbs');
 
-(async function startApp() {
+;(async function startApp() {
   try {
       app.listen(PORT, () => {
       console.log(`+++ Server has been started on port ${PORT}...`)

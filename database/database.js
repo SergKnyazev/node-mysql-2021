@@ -4,7 +4,7 @@ require('dotenv').config();
 const database = new Sequelize(process.env.DATABASE, process.env.USER_NAME, process.env.PASSWORD, {
   dialect: 'postgres',
   host: 'db.jddrwxcxjvxdjdpogzok.supabase.co',
-  port: '5432',
+  port: '6543',
   define: {
     timestamps: false,
   },

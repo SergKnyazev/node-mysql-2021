@@ -5,19 +5,19 @@ const bodyParser = require('body-parser');
 const usersRouter = Router();
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-//получение данных
 usersRouter.route('/')
-  .get(usersController.getAllUsers);
-// рендер формы добавления данных
-usersRouter.route('/create')
-  .get(usersController.renderCreatePage);
+  .get(usersController.getAllUsers);//получение данных
 
-// добавление данных
-usersRouter.post('/create', urlencodedParser, usersController.createUser);
-// удаление данных по id
-usersRouter.post('/delete/:id', urlencodedParser, usersController.removeUser);
-// получаем пользователя по id для редактирования
-usersRouter.get('/edit/:id', usersController.editUser);
+usersRouter.route('/create')
+  .get(usersController.renderCreatePage)//рендер формы добавления данных
+  .post(urlencodedParser, usersController.createUser);//добавление данных
+
+usersRouter.route('/delete/:id')
+  .post(urlencodedParser, usersController.removeUser);//удаление данных по id
+
+usersRouter.route('/edit/:id')
+  .get(usersController.editUser);//получаем пользователя по id для редактирования
+
 // обновление данных в БД
 usersRouter.post('/edit', urlencodedParser, usersController.setEditedUser);
 
