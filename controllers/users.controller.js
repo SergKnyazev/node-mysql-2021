@@ -1,6 +1,6 @@
 const { usersService } = require('../services/users.service.js');
 
-const ERROR_RENDER_CREATE_PAGE = `--- ERROR -> catch -> renderCreatePage`;
+const ERROR_RENDER_CREATE_PAGE = `users.controller.js -- renderCreatePage -> catch : error`;
 
 class UsersController {
   // рендер формы добавления данных
